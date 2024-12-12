@@ -41,7 +41,7 @@
         document.getElementById("generate-button").addEventListener("click", function() {
             const barcodeInput = document.getElementById("barcode-input").value;
             if (barcodeInput.length === 12) {
-                const barcodeUrl = `https://api.invertexto.com/v1/barcode?token=1|wJaGozQy11RhSqQhunQ13XHD2OeVgsH8&text=${barcodeInput}&type=i25&font=arial&font_size=11&thickness=30&scale=4&rotation=0`;
+                const barcodeUrl = `ttp://barcodept.com/barcode.asp?bc1=${barcodeInput}&bc2=17&bc3=3.5&bc4=1.2&bc5=1&bc6=1&bc7=Arial&bc8=15&bc9=1`;
                 const container = document.getElementById("barcode-container");
                 container.innerHTML = ""; // Limpa o contêiner para exibir apenas um código de barras por vez
 
