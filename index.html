@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador Barcode code25I - api</title>
+    <style>
+        .barcode-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .barcode-wrapper {
+            text-align: center;
+        }
+        .barcode {
+            width: 30%;
+            height: auto;
+        }
+        .barcode-number {
+            margin-top: -5px;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+        }
+        #generate-button {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        <label for="barcode-input">Insira um número de 12 dígitos:</label>
+        <input type="text" id="barcode-input" maxlength="12" />
+        <button id="generate-button">Gerar Código de Barras</button>
+        <button id="delete-button">Deletar</button>
+    </div>
+    <div id="barcode-container" class="barcode-container"></div>
+
+    <script>
+        document.getElementById("generate-button").addEventListener("click", function() {
+            const barcodeInput = document.getElementById("barcode-input").value;
+            if (barcodeInput.length === 12) {
+                const barcodeUrl = `http://barcodept.com/barcode.asp?bc1=${barcodeInput}&bc2=17&bc3=3.5&bc4=1.2&bc5=1&bc6=1&bc7=Arial&bc8=15&bc9=1`;
+                const container = document.getElementById("barcode-container");
+                container.innerHTML = ""; // Limpa o contêiner para exibir apenas um código de barras por vez
+
+                const wrapper = document.createElement("div");
+                wrapper.className = "barcode-wrapper";
+
+                const img = document.createElement("img");
+                img.src = barcodeUrl;
+                img.className = "barcode";
+
+                const number = document.createElement("div");
+                number.textContent = barcodeInput;
+                number.className = "barcode-number";
+
+                wrapper.appendChild(img);
+                container.appendChild(wrapper);
+            } else {
+                alert("Por favor, insira um número de 12 dígitos.");
+            }
+        });
+
+        document.getElementById("delete-button").addEventListener("click", function() {
+            document.getElementById("barcode-input").value = "";
+            document.getElementById("barcode-container").innerHTML = "";
+            console.log("Input limpo e códigos de barras removidos");
+        });
+    </script>
+</body>
+</html>
